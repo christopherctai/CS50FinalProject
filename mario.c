@@ -10,25 +10,25 @@ int main(void)
     {
         n = get_int("Height? ");
     }
-    while (n<1 || n>8);
+    while (n < 1 || n > 8);
 
     //print the rows for pyramids one row at a time
-    for(int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
         //prints the spaces before the first triangle
-        for(int j=n-i; j>1; j--)
+        for (int j = n - i; j > 1; j--)
         {
             printf(" ");
         }
         //prints the first triangle.
-        for (int k=n; k>=n-i; k--)
+        for (int k = n; k >= n - i; k--)
         {
             printf("#");
         }
         //prints the spaces between the triangles
         printf("  ");
         //prints the second triangle
-        for (int l=n; l>=n-i; l--)
+        for (int l = n; l >= n - i; l--)
         {
             printf("#");
         }
