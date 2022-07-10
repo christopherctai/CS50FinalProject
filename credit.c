@@ -12,21 +12,29 @@ int main (void)
     do
     {
         answer = get_long ("Number: ");
-        checksum = checkthesum(answer);
     }
-    while (checksum != 0);
+    while (answer < 0);
 
-    if ((answer / 10000000000000) % 100 == 34 || (answer / 10000000000000) % 100 == 37)
+    long z = checkthesum(answer);
+
+    if (z == 0)
     {
-        printf("AMEX\n");
-    }
-    else if ((answer / 100000000000000) % 100 == 51 || (answer / 100000000000000) % 100 == 52 || (answer / 100000000000000) % 100 == 53 || (answer / 100000000000000) % 100 == 54 || (answer / 100000000000000) % 100 == 55)
-    {
-        printf("MASTERCARD\n");
-    }
-    else if ((answer / 1000000000000000) % 10 == 4 || (answer / 1000000000000) % 10 == 4)
-    {
-        printf("VISA\n");
+        if ((answer / 10000000000000) % 100 == 34 || (answer / 10000000000000) % 100 == 37)
+        {
+            printf("AMEX\n");
+        }
+        else if ((answer / 100000000000000) % 100 == 51 || (answer / 100000000000000) % 100 == 52 || (answer / 100000000000000) % 100 == 53 || (answer / 100000000000000) % 100 == 54 || (answer / 100000000000000) % 100 == 55)
+        {
+            printf("MASTERCARD\n");
+        }
+        else if ((answer / 1000000000000000) % 10 == 4 || (answer / 1000000000000) % 10 == 4)
+        {
+            printf("VISA\n");
+        }
+        else
+        {
+            printf("INVALID\n");
+        }
     }
     else
     {
