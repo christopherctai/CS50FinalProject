@@ -34,10 +34,16 @@ int main(int argc, string argv[])
         norepeats = secretcode[i] + norepeats;
     }
 
-    if (norepeats != 2847)
+    for (int k = 0, n = strlen(secretcode); k < n; k++)
     {
-        printf("Key must not contain repeated characters.\n");
-        return 1;
+        for (int l = 1 + k, m = strlen(secretcode); l < m; l++)
+        {
+            if (secretcode[l] == secretcode[k])
+            {
+                printf("Key must not contain repeated characters.\n");
+                return 1;
+            }
+        }
     }
 
     string nocipher = get_string("plaintext: ");
