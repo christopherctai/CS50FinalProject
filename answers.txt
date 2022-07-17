@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort.
+
+How do you know?: There is wide order of running time. The best case is quick, suggesting an order of 1, whereas the worst case takes longer, suggesting an order of n^2.
+
+sort2 uses: Merge sort.
+
+How do you know?: The running time is quick comparatively, on the order of n * log(n).
+
+sort3 uses: Selection sort.
+
+How do you know?: The running time is consistently on the order of n^2, suggesting that the best case and the worst case are the same, with theta(n^2).
