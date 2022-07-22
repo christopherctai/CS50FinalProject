@@ -35,6 +35,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
+bool detectcycle (int startofcycle, int loser);
 
 int main(int argc, string argv[])
 {
@@ -105,9 +106,6 @@ int main(int argc, string argv[])
     */
 
     add_pairs();
-
-    printf("%i, %i, %i, %i, %i, %i\n", pairs[0].winner, pairs[0].loser, pairs[1].winner, pairs[1].loser, pairs[2].winner, pairs[2].loser);
-
     sort_pairs();
     lock_pairs();
     print_winner();
@@ -151,7 +149,7 @@ void add_pairs(void)
     // Populate the pairs array with winners and losers depending who is preferred. Ignore all other cases (tie)
     for (int i = 0; i < candidate_count - 1; i++)
     {
-        for (int j = 1 + i; j < candidate_count; j++)
+        for (int j = 1 + i; j < candidate_count; j++) //minus 1?
         {
             if (preferences[i][j] > preferences[j][i])
             {
@@ -170,34 +168,48 @@ void add_pairs(void)
     return;
 }
 
+
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
     // TODO
-
     int strength[pair_count];
-    int smalleststrength = 100000;
+    int swaplocation;
 
     for (int i = 0; i < pair_count; i++)
     {
         strength[i] = preferences[pairs[i].winner][pairs[i].loser];
     }
 
-    for (int i = 0; i < pair_count; i++)
+    for (int i = 0; i < pair_count - 1; i++)
     {
-        for (int j = 0; j < pair_count; j++)
+
+        int firstnumber = strength[i];
+        int largeststrength = strength[i];
+        pair firstpair = pairs[i];
+        pair largestpair = pairs[i];
+
+        for (int j = i; j < pair_count; j++)
         {
-            if (strength[j] < smalleststrength)
+            if (strength[j] >= largeststrength)
             {
-                smalleststrength = strength[j];
+                largeststrength = strength[j];
+                largestpair = pairs[j];
+                swaplocation = j;
             }
         }
-        strength[i] = smalleststrength;
-        
+
+        strength[swaplocation] = firstnumber;
+        strength[i] = largeststrength;
+
+        pairs[swaplocation] = firstpair;
+        pairs[i] = largestpair;
     }
 
-
+    /*
     printf("%i, %i, %i\n", strength[0], strength[1], strength[2]);
+    printf("%i, %i, %i, %i, %i, %i\n", pairs[0].winner, pairs[0].loser, pairs[1].winner, pairs[1].loser, pairs[2].winner, pairs[2].loser);
+    */
 
     return;
 }
@@ -206,13 +218,102 @@ void sort_pairs(void)
 void lock_pairs(void)
 {
     // TODO
+
+    for (int i = 0; i < pair_count; i++)
+    {
+        if(!detectcycle (pairs[i].winner, pairs[i].loser))
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
+    }
+
+    /*
+    printf("%d\n", locked[pairs[0].winner][pairs[0].loser]);
+    printf("%d\n", locked[pairs[1].winner][pairs[1].loser]);
+    printf("%d\n", locked[pairs[2].winner][pairs[2].loser]);
+    */
+   
     return;
+
+    /*
+    // locked[i][j] means i is locked in over j
+    bool locked[MAX][MAX];
+    */
+
+    /*
+    int locked[pair_count];
+
+    for (int i = 0; i < pairs; i++)
+    {
+        locked[i] = pairs[i].winner;
+
+        for (int j = i - 1, j > -2; j--)
+        {
+            if (locked[i] == locked[j])
+            {
+                int winnerwinnerchickendinner = i;
+                printf("%i\n", winnerwinnerchickendinner);
+                return;
+            }
+        }
+    }
+    */
+}
+
+bool detectcycle (int startofcycle, int loser)
+{
+    if (startofcycle == loser)
+    {
+        return true;
+    }
+
+    // Define boolean n. If false, there is no loser of the loser
+    bool n = false;
+
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[loser][i])
+        {
+            n = true;
+            return detectcycle(startofcycle, i);
+        }
+    }
+
+    if (n == false)
+    {
+        return false;
+    }
+
+    return false;
 }
 
 // Print the winner of the election
 void print_winner(void)
 {
     // TODO
+
+
+
+    for (int col = 0; col < candidate_count; col++)
+    {
+
+        bool n = false;
+
+        for (int row = 0; row < candidate_count; row++)
+        {
+            if (locked[row][col] == true)
+            {
+                n = true;
+            }
+        }
+
+        if (n == false)
+        {
+            printf("%s\n", candidates[col]);
+        }
+    }
+
+
     return;
 }
 
