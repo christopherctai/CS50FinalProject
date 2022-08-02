@@ -232,7 +232,7 @@ void lock_pairs(void)
     printf("%d\n", locked[pairs[1].winner][pairs[1].loser]);
     printf("%d\n", locked[pairs[2].winner][pairs[2].loser]);
     */
-   
+
     return;
 
     /*
