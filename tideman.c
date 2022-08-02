@@ -35,7 +35,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-bool detectcycle (int startofcycle, int loser);
+bool detectcycle(int startofcycle, int loser);
 
 int main(int argc, string argv[])
 {
@@ -132,7 +132,7 @@ bool vote(int rank, string name, int ranks[])
 void record_preferences(int ranks[])
 {
     // Update each voter's preferences one at a time.
-    for(int i = 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
@@ -221,19 +221,20 @@ void lock_pairs(void)
 
     for (int i = 0; i < pair_count; i++)
     {
-        if(!detectcycle (pairs[i].winner, pairs[i].loser))
+        if (!detectcycle(pairs[i].winner, pairs[i].loser))
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
     }
+
+
+    return;
 
     /*
     printf("%d\n", locked[pairs[0].winner][pairs[0].loser]);
     printf("%d\n", locked[pairs[1].winner][pairs[1].loser]);
     printf("%d\n", locked[pairs[2].winner][pairs[2].loser]);
     */
-
-    return;
 
     /*
     // locked[i][j] means i is locked in over j
@@ -260,16 +261,20 @@ void lock_pairs(void)
     */
 }
 
-bool detectcycle (int startofcycle, int loser)
+bool detectcycle(int startofcycle, int loser)
 {
+    // If the start of the cycle is equivalent to the loser, then there is a cycle. this is the base case!
+    // Returning true means that the if statement in the locked function will not change the locked array from false to true. ie it stays false because it creates a loop
     if (startofcycle == loser)
     {
         return true;
     }
 
-    // Define boolean n. If false, there is no loser of the loser
+    // Define boolean n. If false, there is no loser of the loser. If true, there IS a loser of the loser
     bool n = false;
 
+    // Run through all the other candidates and see if this loser has beaten any of the other candidates (represented by i)
+    // If the loser HAS beaten another candidate, locked[loser][i] is true. Therefore i is the new loser and you keep doing this until startofcycle == loser
     for (int i = 0; i < candidate_count; i++)
     {
         if (locked[loser][i])
@@ -279,6 +284,7 @@ bool detectcycle (int startofcycle, int loser)
         }
     }
 
+    // If n is still false, then the loser never beat anyone else and this pair can be locked in over the other pair. return false to lock the pair
     if (n == false)
     {
         return false;
@@ -318,14 +324,14 @@ void print_winner(void)
 }
 
 
-    /*
-    string candidates[] = [Alice, Bob, Charlie, David]
-    int ranks[] = [1, 2, 0, 3]
-    Bob is better than everyone else. Therefore update preferences by giving him one point at the following:
-    preferences[1][0], preferences[1][2], and preferences[1][3], but NOT at preferences[1][1]
-    give one point to
-    preferences[2][0], preferences[2][3]
-    give one point to
-    preferences [0][3]
-    so, preferences[i][j] =
-    */
+/*
+string candidates[] = [Alice, Bob, Charlie, David]
+int ranks[] = [1, 2, 0, 3]
+Bob is better than everyone else. Therefore update preferences by giving him one point at the following:
+preferences[1][0], preferences[1][2], and preferences[1][3], but NOT at preferences[1][1]
+give one point to
+preferences[2][0], preferences[2][3]
+give one point to
+preferences [0][3]
+so, preferences[i][j] =
+*/
