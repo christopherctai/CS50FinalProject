@@ -94,24 +94,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             // Counts the number of pixels around the pixel in question. Resets for each pixel
             double pixelcount = 0;
 
-            // If not an edge or corner case
-            if (i > 0 && i < height && j > 0 && j < width)
-            {
-                for (int k = -1; k < 2; k++)
-                {
-                    for (int l = -1; l < 2; l++)
-                    {
-                        totalred += redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
-                    }
-                }
-            }
-
             // If top row
-            else if (i == 0 && j != 0)
+            if (i == 0 && j != 0)
             {
                 for (int k = 0; k < 2; k++)
                 {
@@ -229,6 +213,22 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = -1; l < 1; l++)
                    {
+                        totalred += redvalues[i + k][j + l];
+                        totalgreen += greenvalues[i + k][j + l];
+                        totalblue += bluevalues[i + k][j + l];
+
+                        pixelcount++;
+                    }
+                }
+            }
+
+            // If not an edge or corner case
+            else
+            {
+                for (int k = -1; k < 2; k++)
+                {
+                    for (int l = -1; l < 2; l++)
+                    {
                         totalred += redvalues[i + k][j + l];
                         totalgreen += greenvalues[i + k][j + l];
                         totalblue += bluevalues[i + k][j + l];
