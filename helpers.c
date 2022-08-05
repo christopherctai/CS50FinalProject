@@ -111,7 +111,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If top row
-            else if (i == 0)
+            else if (i == 0 && j != 0)
             {
                 for (int k = 0; k < 2; k++)
                 {
@@ -127,7 +127,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If left row
-            else if (j == 0)
+            else if (j == 0 && i != 0)
             {
                 for (int k = -1; k < 2; k++)
                 {
@@ -143,7 +143,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If right row
-            else if (j == width - 1)
+            else if (j == (width - 1) && i != 0)
             {
                 for (int k = -1; k < 2; k++)
                 {
@@ -159,7 +159,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If bottom row
-            else if (i == height - 1)
+            else if (i == (height - 1) && j != 0)
             {
                 for (int k = -1; k < 1; k++)
                 {
@@ -191,7 +191,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If top right corner
-            else if (i == 0 && j == width - 1)
+            else if (i == 0 && j == (width - 1))
             {
                 for (int k = 0; k < 2; k++)
                 {
@@ -207,7 +207,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If bottom left corner
-            else if (i == height - 1 && j == 0)
+            else if (i == (height - 1) && j == 0)
             {
                 for (int k = -1; k < 1; k++)
                 {
@@ -223,7 +223,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If bottom right corner
-            else if (i == height - 1 && j == width - 1)
+            else if (i == (height - 1) && j == (width - 1))
             {
                 for (int k = -1; k < 1; k++)
                 {
