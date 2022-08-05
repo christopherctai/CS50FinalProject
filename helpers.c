@@ -62,9 +62,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 {
 
     // Define arrays to store the color values so you don't change them as they go
-    int redvalues[height][width];
-    int greenvalues[height][width];
-    int bluevalues[height][width];
+    double redvalues[height][width];
+    double greenvalues[height][width];
+    double bluevalues[height][width];
 
     // Populate the new color arrays so you have static arrays
     for (int i = 0; i < height; i++)
@@ -87,12 +87,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             // Define total values that can be changed to find an average value. Resets for each pixel
-            int totalred = 0;
-            int totalgreen = 0;
-            int totalblue = 0;
+            double totalred = 0;
+            double totalgreen = 0;
+            double totalblue = 0;
 
             // Counts the number of pixels around the pixel in question. Resets for each pixel
-            int pixelcount = 0;
+            double pixelcount = 0;
 
             // If not an edge or corner case
             if (i > 0 && i < height && j > 0 && j < width)
@@ -239,9 +239,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // Find the average RGB values for
-            int averagered = round(totalred/pixelcount);
-            int averagegreen = round(totalgreen/pixelcount);
-            int averageblue = round(totalblue/pixelcount);
+            double averagered = round(totalred/pixelcount);
+            double averagegreen = round(totalgreen/pixelcount);
+            double averageblue = round(totalblue/pixelcount);
 
             image[i][j].rgbtRed = averagered;
             image[i][j].rgbtGreen = averagegreen;
