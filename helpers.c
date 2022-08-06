@@ -62,9 +62,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 {
 
     // Define arrays to store the color values so you don't change them as they go
-    double redvalues[height - 1][width - 1];
-    double greenvalues[height - 1][width - 1];
-    double bluevalues[height - 1][width - 1];
+    double redvalues[height][width];
+    double greenvalues[height][width];
+    double bluevalues[height][width];
 
     // Populate the new color arrays so you have static arrays
     for (int i = 0; i < height; i++)
