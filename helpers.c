@@ -6,17 +6,21 @@
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
+
+    // Iterate over each pixel individually
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
+            // Get RGB values
             double red = image[i][j].rgbtRed;
             double green = image[i][j].rgbtGreen;
             double blue = image[i][j].rgbtBlue;
 
+            // Find average RGB value
+            double average = round((red + green + blue) / 3);
 
-            double average = round((red + green + blue)/3);
-
+            // Make everything equivalent to this RGB value
             image[i][j].rgbtRed = average;
             image[i][j].rgbtGreen = average;
             image[i][j].rgbtBlue = average;
@@ -28,11 +32,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    // If the width of the image is even, then swap only up to width / 2
     if (width % 2 == 0)
     {
         for (int i = 0; i < height; i++)
         {
-            for (int j = 0; j < (width/2); j++)
+            for (int j = 0; j < (width / 2); j++)
             {
                 RGBTRIPLE buffer = image[i][j];
                 image[i][j] = image[i][width - (1 + j)];
@@ -41,11 +46,12 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
+    // If the width of the image is odd, then swap up to (width - 1) / 2
     else
     {
         for (int i = 0; i < height; i++)
         {
-            for (int j = 0; j < ((width - 1)/2); j++)
+            for (int j = 0; j < ((width - 1) / 2); j++)
             {
                 RGBTRIPLE buffer = image[i][j];
                 image[i][j] = image[i][width - (1 + j)];
@@ -76,10 +82,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             bluevalues [i][j] = image[i][j].rgbtBlue;
         }
     }
-
-    /*
-    printf("%i\n", redvalues[0][0]);
-    */
 
     // Iterate over each pixel one at a time
     for (int i = 0; i < height; i++)
@@ -239,10 +241,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // Find the average RGB values for
-            double averagered = round(totalred/pixelcount);
-            double averagegreen = round(totalgreen/pixelcount);
-            double averageblue = round(totalblue/pixelcount);
+            double averagered = round(totalred / pixelcount);
+            double averagegreen = round(totalgreen / pixelcount);
+            double averageblue = round(totalblue / pixelcount);
 
+            // Set the corresponding pixel to that average value
             image[i][j].rgbtRed = averagered;
             image[i][j].rgbtGreen = averagegreen;
             image[i][j].rgbtBlue = averageblue;
@@ -264,26 +267,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     // Define arrays to store Gx and Gy kernels
     double Gx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
     double Gy[3][3] = {{-1, -2, -1}, {0, 0, 0}, {1, 2, 1}};
-
-    // Test Print
-    /*
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            printf("%f\n", Gx[i][j]);
-        }
-    }
-
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            printf("%f\n", Gy[i][j]);
-        }
-    }
-    */
-
 
     // Populate the new color arrays so you have static arrays
     for (int i = 0; i < height; i++)
@@ -313,7 +296,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             double Gxblue = 0;
             double Gyblue = 0;
 
-
             // If top row
             if (i == 0 && j != 0 && j != width - 1)
             {
@@ -321,6 +303,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = -1; l < 2; l++)
                     {
+                        // Multiply the red value in a particular location by the Gx and Gy values of the corresponding 
                         Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
                         Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
                         Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
@@ -452,7 +435,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
             // If not an edge or corner case. Iterates all around the current pixel.
             else
-            /*if (i != 0 && i != height - 1 && j != 0 && j != width - 1) */
             {
                 for (int k = -1; k < 2; k++)
                 {
