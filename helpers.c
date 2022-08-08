@@ -313,7 +313,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             double Gxblue = 0;
             double Gyblue = 0;
 
-            /*
 
             // If top row
             if (i == 0 && j != 0 && j != width - 1)
@@ -322,14 +321,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = -1; l < 2; l++)
                     {
-                        for (int m = -1; m < 2)
-
-
-                        redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
+                        Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gygreen += greenvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxblue += bluevalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyblue += bluevalues[i + k][j + l] * Gy[k + 1][l + 1];
                     }
                 }
             }
@@ -341,11 +338,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = 0; l < 2; l++)
                     {
-                        totalred += redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
+                        Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gygreen += greenvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxblue += bluevalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyblue += bluevalues[i + k][j + l] * Gy[k + 1][l + 1];
                     }
                 }
             }
@@ -357,11 +355,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = -1; l < 1; l++)
                     {
-                        totalred += redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
+                        Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gygreen += greenvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxblue += bluevalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyblue += bluevalues[i + k][j + l] * Gy[k + 1][l + 1];
                     }
                 }
             }
@@ -373,11 +372,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = -1; l < 2; l++)
                     {
-                        totalred += redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
+                        Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gygreen += greenvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxblue += bluevalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyblue += bluevalues[i + k][j + l] * Gy[k + 1][l + 1];
                     }
                 }
             }
@@ -389,11 +389,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = 0; l < 2; l++)
                     {
-                        totalred += redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
+                        Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gygreen += greenvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxblue += bluevalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyblue += bluevalues[i + k][j + l] * Gy[k + 1][l + 1];
                     }
                 }
             }
@@ -405,11 +406,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = -1; l < 1; l++)
                     {
-                        totalred += redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
+                        Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gygreen += greenvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxblue += bluevalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyblue += bluevalues[i + k][j + l] * Gy[k + 1][l + 1];
                     }
                 }
             }
@@ -421,11 +423,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = 0; l < 2; l++)
                     {
-                        totalred += redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
+                        Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gygreen += greenvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxblue += bluevalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyblue += bluevalues[i + k][j + l] * Gy[k + 1][l + 1];
                     }
                 }
             }
@@ -437,20 +440,19 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     for (int l = -1; l < 1; l++)
                     {
-                        totalred += redvalues[i + k][j + l];
-                        totalgreen += greenvalues[i + k][j + l];
-                        totalblue += bluevalues[i + k][j + l];
-
-                        pixelcount++;
+                        Gxred += redvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyred += redvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxgreen += greenvalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gygreen += greenvalues[i + k][j + l] * Gy[k + 1][l + 1];
+                        Gxblue += bluevalues[i + k][j + l] * Gx[k + 1][l + 1];
+                        Gyblue += bluevalues[i + k][j + l] * Gy[k + 1][l + 1];
                     }
                 }
             }
 
-            */
-
             // If not an edge or corner case. Iterates all around the current pixel.
-            /* else */
-            if (i != 0 && i != height - 1 && j != 0 && j != width - 1)
+            else
+            /*if (i != 0 && i != height - 1 && j != 0 && j != width - 1) */
             {
                 for (int k = -1; k < 2; k++)
                 {
