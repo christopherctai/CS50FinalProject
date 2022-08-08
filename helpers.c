@@ -60,7 +60,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-
+    
     // Define arrays to store the color values so you don't change them as they go
     double redvalues[height][width];
     double greenvalues[height][width];
@@ -95,7 +95,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             double pixelcount = 0;
 
             // If top row
-            if (i == 0 && j != 0)
+            if (i == 0 && j != 0 && j != width - 1)
             {
                 for (int k = 0; k < 2; k++)
                 {
@@ -111,7 +111,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If left row
-            else if (j == 0 && i != 0)
+            else if (j == 0 && i != 0 && i != height - 1)
             {
                 for (int k = -1; k < 2; k++)
                 {
@@ -127,7 +127,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If right row
-            else if (j == (width - 1) && i != 0)
+            else if (j == (width - 1) && i != 0 && i != height - 1)
             {
                 for (int k = -1; k < 2; k++)
                 {
@@ -143,7 +143,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
             // If bottom row
-            else if (i == (height - 1) && j != 0)
+            else if (i == (height - 1) && j != 0 && j != width - 1)
             {
                 for (int k = -1; k < 1; k++)
                 {
