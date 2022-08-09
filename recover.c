@@ -23,15 +23,10 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    FILE *outfile;
     const int BLOCK_SIZE = 512;
     int jpgnumber = 0;
     BYTE block_buffer[BLOCK_SIZE];
-    FILE *outfile;
-    if (outfile == NULL)
-    {
-        printf("Image cannot be opened for reading.\n");
-        return 1;
-    }
     char filename[8];
     bool file_is_open = false;
 
@@ -46,6 +41,12 @@ int main(int argc, char *argv[])
             {
                 sprintf(filename, "%03i.jpg", jpgnumber);
                 outfile = fopen(filename, "a");
+                if (outfile == NULL)
+                {
+                    printf("Image cannot be opened for reading.\n");
+                    return 1;
+                }
+                
                 fwrite(block_buffer, 1, BLOCK_SIZE, outfile);
 
                 file_is_open = true;
