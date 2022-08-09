@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 
     typedef uint8_t BYTE;
 
-    // Check for proper usage!
+    // Check for proper usage! Only ONE command line argument
     if (argc != 2)
     {
         printf("Usage: ./recover image\n");
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
                     printf("Image cannot be opened for reading.\n");
                     return 1;
                 }
-                
+
                 fwrite(block_buffer, 1, BLOCK_SIZE, outfile);
 
                 file_is_open = true;
@@ -65,10 +65,9 @@ int main(int argc, char *argv[])
 
                 jpgnumber++;
             }
-
-
         }
 
+        // If it's not the beginning of a JPEG 
         else
         {
             if (file_is_open == true)
