@@ -9,11 +9,24 @@
 // (e.g., pneumonoultramicroscopicsilicovolcanoconiosis)
 #define LENGTH 45
 
+// Define a node
+/*
+typedef struct node
+{
+    char word[LENGTH + 1];
+    struct node *next;
+}
+node;
+*/
+
 // Prototypes
 bool check(const char *word);
 unsigned int hash(const char *word);
 bool load(const char *dictionary);
 unsigned int size(void);
 bool unload(void);
+
+// My own functions
+/*void free_memory(node *free_node);*/
 
 #endif // DICTIONARY_H
