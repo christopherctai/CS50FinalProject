@@ -22,7 +22,7 @@ node;
 
 
 // Choose number of buckets in hash table
-const unsigned int N = 676;
+const unsigned int N = 678;
 
 // Hash table defined
 node *table[N];
@@ -36,7 +36,7 @@ bool check(const char *word)
 
     cursor = table[hashcode];
 
-    while (cursor != NULL)
+    while (cursor->next != NULL)
     {
         if (strcmp(cursor->word, word) == 0)
         {
@@ -52,12 +52,51 @@ bool check(const char *word)
 // Hashes word to a number, taking the first two letters of the word
 unsigned int hash(const char *word)
 {
-    //
     int first_letter = toupper(word[0]) - 'A';
-    int second_letter = toupper(word[1]) - 'A';
+    int second_letter = second_letter_value(word[1]);
 
-    first_letter = first_letter * 26;
-    return (first_letter + second_letter);
+    if (second_letter == 27)
+    {
+        return 676;
+    }
+
+    else if (second_letter == 28)
+    {
+        return 677;
+    }
+
+    else
+    {
+        first_letter = first_letter * 26;
+        return (first_letter + second_letter);
+    }
+
+    // Say I have a word zzelt.
+    // Convert then subtract for both first and second letters: 90-65 = 25, then 90-65 = 25.
+    // Then we multiply the first letter value, 25 * 26 = 650
+    // Return 650 + 25 = 675.
+    // This should work, since there are 676 total buckets and therefore this would range from 0 to 675 inclusive.
+
+    // say i have a word aardvark
+    // same idea; both first letter and second letter will be 0, so 0 will be returned.
+}
+
+int second_letter_value (char x)
+{
+    if (x == '\'')
+    {
+        return 27;
+    }
+
+    else if (x == '\0')
+    {
+        return 28;
+    }
+
+    else
+    {
+        return x;
+    }
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -68,6 +107,12 @@ bool load(const char *dictionary)
     if (d == NULL)
     {
         return false;
+    }
+
+    // Clear hash table
+    for (int i = 0; i < N; i++)
+    {
+        table[i] = NULL;
     }
 
     // Create a word buffer for fscanf
@@ -90,12 +135,25 @@ bool load(const char *dictionary)
         strcpy(new_node->word, word_buffer);
 
         // Put the new node into place
-        new_node->next = table[hashcode];
-        table[hashcode] = new_node;
+        if (table[hashcode] == NULL)
+        {
+            table[hashcode] = new_node;
+        }
+
+        else
+        {
+            new_node->next = table[hashcode];
+            table[hashcode] = new_node;
+        }
 
         size();
     }
 
+    fclose(d);
+    dictionary_is_loaded = true;
+    return true;
+
+    /*
     if (fscanf(d, "%s", word_buffer) == EOF)
     {
         dictionary_is_loaded = true;
@@ -103,6 +161,7 @@ bool load(const char *dictionary)
     }
 
     return false;
+    */
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
@@ -124,24 +183,36 @@ bool unload(void)
 {
     for (int i = 0; i < N; i++)
     {
-        node *cursor = table[i];
-        while (cursor != NULL)
+        while (table[i] != NULL)
         {
-            node *tmp = cursor;
-            cursor = cursor->next;
-            free(tmp);
+            node *tmp = table[i]->next;
+            free(table[i]);
+            table[i] = tmp;
         }
     }
 
     for (int j = 0; j < N; j++)
     {
-        if (table[j] == NULL)
+        if (table[j] != NULL)
         {
             return false;
         }
     }
 
     return true;
+
+    /*
+    for (int i = 0; i < N; i++)
+    {
+        node *cursor = table[i];
+        while (cursor->next != NULL)
+        {
+            node *tmp = cursor;
+            cursor = cursor->next;
+            free(tmp);
+        }
+    }
+    */
 
 }
 
