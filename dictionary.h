@@ -27,7 +27,7 @@ unsigned int size(void);
 bool unload(void);
 
 // My own functions
-int second_letter_value (char x);
+int second_letter_value(char x);
 /*void free_memory(node *free_node);*/
 
 #endif // DICTIONARY_H
