@@ -115,7 +115,7 @@ bool load(const char *dictionary)
         return false;
     }
 
-    // Clear hash table
+    // Initialize hash table
     for (int i = 0; i < N; i++)
     {
         table[i] = NULL;
@@ -145,6 +145,7 @@ bool load(const char *dictionary)
         if (table[hashcode] == NULL)
         {
             table[hashcode] = new_node;
+            new_node->next = NULL;
         }
 
         else
