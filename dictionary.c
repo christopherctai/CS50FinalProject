@@ -9,6 +9,7 @@
 
 #include "dictionary.h"
 
+// Define items for size()
 bool dictionary_is_loaded = false;
 int size_of_dictionary = 0;
 
@@ -85,7 +86,7 @@ unsigned int hash(const char *word)
     // same idea; both first letter and second letter will be 0, so 0 will be returned.
 }
 
-int second_letter_value (char x)
+int second_letter_value(char x)
 {
     if (x == '\'')
     {
@@ -128,6 +129,7 @@ bool load(const char *dictionary)
     {
         // Allocate memory for the new node
         node *new_node = malloc(sizeof(node));
+
         if (new_node == NULL)
         {
             return false;
@@ -186,11 +188,13 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
+    node *tmp = NULL;
+
     for (int i = 0; i < N; i++)
     {
         while (table[i] != NULL)
         {
-            node *tmp = table[i]->next;
+            tmp = table[i]->next;
             free(table[i]);
             table[i] = tmp;
         }
