@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 #include "dictionary.h"
 
@@ -30,20 +31,23 @@ node *table[N];
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    node *cursor = NULL;
-
     int hashcode = hash(word);
 
-    cursor = table[hashcode];
+    node *cursor = table[hashcode];
 
     while (cursor->next != NULL)
     {
-        if (strcmp(cursor->word, word) == 0)
+        if (strcasecmp(cursor->word, word) == 0)
         {
             return true;
         }
 
         cursor = cursor->next;
+    }
+
+    if (strcasecmp(cursor->word, word) == 0)
+    {
+        return true;
     }
 
     return false;
@@ -67,8 +71,8 @@ unsigned int hash(const char *word)
 
     else
     {
-        first_letter = first_letter * 26;
-        return (first_letter + second_letter);
+        first_letter *= 26;
+        return first_letter + second_letter;
     }
 
     // Say I have a word zzelt.
@@ -95,7 +99,8 @@ int second_letter_value (char x)
 
     else
     {
-        return x;
+
+        return toupper(x) - 'A';
     }
 }
 
