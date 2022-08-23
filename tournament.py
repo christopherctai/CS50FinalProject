@@ -25,7 +25,6 @@ def main():
     # Define a dictionary counts
     counts = {}
 
-
     # TODO: Simulate N tournaments and keep track of win counts
     for i in range(N):
         winner = simulate_tournament(teams)
@@ -70,15 +69,6 @@ def simulate_tournament(teams):
             name_of_winner = teams[0]
             return name_of_winner['team']
 
-"""
-    if len(teams) == 1:
-        print(teams)
-        return teams
-
-    winners = simulate_round(teams)
-    simulate_tournament(winners)
-
-"""
 
 if __name__ == "__main__":
     main()
