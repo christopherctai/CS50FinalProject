@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Bible Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            document.addEventListener("DOMContentLoaded", function(){
+                let corrects = document.querySelectorAll('.correct');
+                for (let i = 0; i < corrects.length; i++)
+                {
+                    corrects[i].addEventListener('click', function() {
+                        corrects[i].style.backgroundColor = 'Green';
+                        document.querySelector('#response').innerHTML = 'Correct!';
+                    })
+                }
+
+                let incorrects = document.querySelectorAll('.incorrect');
+                for (let i = 0; i < incorrects.length; i++)
+                {
+                    incorrects[i].addEventListener('click', function(){
+                        incorrects[i].style.backgroundColor = 'Red';
+                        document.querySelector('#response').innerHTML = 'Incorrect';
+                    })
+                }
+
+                document.querySelector('#answer').addEventListener('click', function(){
+                    input = document.querySelector('#input')
+                    if (input.value === "Jesus Christ")
+                    {
+                        input.style.backgroundColor = 'green'
+                        document.querySelector('#response2').innerHTML = 'Correct';
+                    }
+                    else
+                    {
+                        input.style.backgroundColor = 'red'
+                        document.querySelector('#response2').innerHTML = 'Incorrect';
+                    }
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Bible Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice</h2>
+                <hr>
+                <!-- TO DO: add multiple choice question here -->
+                <h3>Which gospel is the longest by word count?</h3>
+                <br>
+                <button class='incorrect'>Matthew</button>
+                <button class='incorrect'>Mark</button>
+                <button class='correct'>Luke</button>
+                <button class='incorrect'>John</button>
+
+                <h3>Who is not an apostle?</h3>
+                <br>
+                <button class='incorrect'>Thomas</button>
+                <button class='correct'>Mark</button>
+                <button class='incorrect'>Bartholomew</button>
+                <button class='incorrect'>Andrew</button>
+
+                <p id="response"></p>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>Who is the way and the truth and the life?</h3>
+                <form>
+                    <input autocomplete="off" autofocus id='input' placeholder="Answer" type="text">
+                    <button id='answer' type="button">Submit</button>
+                    
+                </form>
+
+                <p id="response2"></p>
+            </div>
+        </div>
+    </body>
+</html>

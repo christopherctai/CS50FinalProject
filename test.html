@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            function showAnswer(id)
+            {
+                if (id == 3)
+                {
+                    document.getElementById(id).style.backgroundColor = "Green";
+                    document.getElementById(id).style.color = "White";
+                    document.getElementById("response").innerHTML = "Correct!";
+                }
+                else
+                {
+                    document.getElementById(id).style.backgroundColor = "Red";
+                    document.getElementById(id).style.color = "White";
+                    document.getElementById("response").innerHTML = "Incorrect";
+                }
+            }
+
+            /* Jquery attempt
+            $(document).ready(function() {
+                $('.correct').click(function() {
+                    $('#correct').css('background-color', 'green');
+                });
+            });
+            */
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice</h2>
+                <hr>
+                <!-- TO DO: add multiple choice question here -->
+                <p>Which gospel is the longest?</p>
+
+                <button class="button" id="1" onclick="showAnswer(this.id)" type="button">
+                    Matthew
+                </button>
+                <button class="button" id="2" onclick="showAnswer(this.id)" type="button">
+                    Mark
+                </button>
+                <button class="button" id="3" onclick="showAnswer(this.id)" type="button">
+                    Luke
+                </button>
+                <button class="button" id="4" onclick="showAnswer(this.id)" type="button">
+                    John
+                </button>
+
+                <p id="response"></p>
+
+                <p></p>
+
+                <button class="button" id="1" onclick="showAnswer(this.id)" type="button">
+                    Matthew
+                </button>
+                <button class="button" id="2" onclick="showAnswer(this.id)" type="button">
+                    Mark
+                </button>
+                <button class="button" id="3" onclick="showAnswer(this.id)" type="button">
+                    Luke
+                </button>
+                <button class="button" id="4" onclick="showAnswer(this.id)" type="button">
+                    John
+                </button>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+            </div>
+        </div>
+    </body>
+</html>
