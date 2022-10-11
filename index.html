@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Immanuel Christian Fellowship</title>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("secret_button").addEventListener("click", Reveal)
+          })
+
+          var revealed = 0;
+
+          function Reveal()
+          {
+            if (revealed == 0)
+            {
+              document.getElementById("hidden_message").innerHTML = "Jesus Christ is the Way, the Truth, and the Life! John 14:6 (ESV)";
+              revealed = 1;
+            }
+            else
+            {
+              document.getElementById("hidden_message").innerHTML = "";
+              revealed = 0;
+            }
+          }
+
+        </script>
+    </head>
+    <body class="body">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+
+          <div class="container-fluid basic-text">
+              <a class="navbar-brand" href="https://christopherctai-code50-108373261-r45696q953xr79-8080.githubpreview.dev/index.html">Immanuel Christian Fellowship</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">About</a>
+                    <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                        <li><a class="dropdown-item" href="page1.html">What We Believe</a></li>
+                        <li><a class="dropdown-item" href="page2.html">Leadership</a></li>
+                    </ul>
+                </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="announcementsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Announcements
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="announcementsDropdown">
+                      <li><a class="dropdown-item" href="page5.html">Discipleship and Small Groups</a></li>
+                      <li><a class="dropdown-item" href="page3.html">General Events</a></li>
+                      <li><a class="dropdown-item" href="page4.html">Special Upcoming Events</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+
+            </div>
+          </nav>
+
+          <div id="carouselExampleIndicators" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="icfgroupphoto.jpg" class="d-block w-100" alt="Immanuel Christian Fellowship 2022 Retreat" title="Immanuel Christian Fellowship 2022 Retreat">
+              </div>
+              <div class="carousel-item">
+                <img src="icfgroupphoto2.jpg" class="d-block w-100" alt="Immanuel Christian Fellowship 2022 Family Camp" title="Immanuel Christian Fellowship 2022 Family Camp">
+              </div>
+              <div class="carousel-item">
+                <img src="icfgroupphoto3.jpg" class="d-block w-100" alt="Immanuel Christian Fellowship 2022 Graduation Celebration" title="Immanuel Christian Fellowship 2022 Graduation Celebration">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <br>
+
+          <h1 class="header" >
+            Welcome to Immanuel Christian Fellowship!
+          </h1>
+
+          <br>
+
+          <div class="basic-text container-lg">
+            <p>
+              "Him we proclaim, warning everyone and teaching everyone with all wisdom, that we may present everyone mature in Christ." Colossians 1:28 (ESV)
+            </p>
+            <br>
+            <p>
+              Immanuel Christian Fellowship (ICF) is the college ministry of Immanuel Bible Church. Our desire is to connect college students to the local church, proclaiming Christ to them with a high view of God and of Scripture, so that each one would be mature in Christ. Our aim is to equip these students to serve Christ and His church, and to evangelize students who are lost without Christ.
+            </p>
+
+          </div>
+
+          <hr>
+
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col">
+                <div class="card text-white bg-dark mb-3">
+                  <img src="icfgroupphoto4.jpg" class="card-img-top img-fluid" alt="IBC Baptism Service">
+                  <div class="card-body">
+                    <h5 class="basic-text card-title">Church Rides</h5>
+                    <p class="basic-text card-text">
+                      We provide rides to Immanuel Bible Church every Sunday. You can sign up for a ride here if you want to come to church (sign up by Friday night)! A typical Sunday service is from 9am to 10:30am, with an Equip Hour (more teaching) from 11am to 12pm.
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjOKT6_yMXv6Zd47cGVgrPWIPf43g_UqdCQ8GOibKgSQNRDw/viewform" target="_blank" class="btn btn-outline-info">Rides From UCLA</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScRpomXatgwd5_VPTa6Ieq4CUfYswsc6w2c-1ktV6oMkFlXjw/viewform" target="_blank" class="btn btn-outline-danger">Rides From USC</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+
+          <div class="container basic-text">
+            <div class="row justify-content-center">
+              <h1>Who is the Way, the Truth, and the Life?</h1>
+              <button id="secret_button" class="btn btn-outline-light">Click to Find Out!</button>
+              <p class="basic-text" id="hidden_message"></p>
+            </div>
+          </div>
+
+
+          <br>
+
+          <div class="footer">
+            <p>© 2022 Immanuel Bible Church</p>
+            <p>15204 Plummer St., North Hills, CA 91343</p>
+            <p>(424)261-4222</p>
+            <p>info@ibcbible.org</p>
+          </div>
+
+      </body>
+</html>
