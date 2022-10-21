@@ -283,10 +283,10 @@ def register():
         elif not request.form.get("password"):
             return apology("must choose a password", 403)
 
-        elif not request.form.get("verify-password"):
+        elif not request.form.get("confirmation"):
             return apology("must verify your password", 403)
 
-        elif request.form.get("password") != request.form.get("verify-password"):
+        elif request.form.get("password") != request.form.get("confirmation"):
             return apology("passwords do not match", 403)
 
         usernames = db.execute("SELECT username FROM users")
