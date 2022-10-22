@@ -292,7 +292,7 @@ def register():
         usernames = db.execute("SELECT username FROM users")
 
         if any(d["username"] == request.form.get("username") for d in usernames):
-            return apology("username taken", 403)
+            return apology("username taken")
 
         username = request.form.get("username")
         password = generate_password_hash(request.form.get("password"))
@@ -348,7 +348,7 @@ def sell():
 
         shares_owned = db.execute("SELECT shareholders.shares_owned FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id WHERE symbol = ?", request.form.get("symbol"))
         if int(request.form.get("shares")) > shares_owned[-1]["shares_owned"]:
-            return apology("you can't sell that many shares!", 403)
+            return apology("you can't sell that many shares!")
 
         # Get the stock stats
         stock_id = db.execute("SELECT id FROM stocks WHERE symbol = ?", symbol)
