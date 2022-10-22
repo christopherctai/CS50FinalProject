@@ -47,7 +47,8 @@ def after_request(response):
 def index():
     """Show portfolio of stocks"""
 
-    stocks_owned = db.execute("SELECT stocks.symbol, shareholders.shares_owned FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id JOIN users ON users.id = shareholders.user_id WHERE users.id = ?", session["user_id"])
+    stocks_owned = db.execute(
+        "SELECT stocks.symbol, shareholders.shares_owned FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id JOIN users ON users.id = shareholders.user_id WHERE users.id = ?", session["user_id"])
 
     # Create a list of unique stocks to not repeat
     unique_stocks = []
@@ -60,7 +61,8 @@ def index():
             stock_stats = lookup(stocks_owned[i]["symbol"])
             total_price = stock_stats["price"] * stocks_owned[i]["shares_owned"]
             if stocks_owned[i]["shares_owned"] != 0:
-                index_display.append({"Name":stock_stats["name"], "Symbol":stocks_owned[i]["symbol"], "Price_per_Share":stock_stats["price"], "Number_of_Shares":stocks_owned[i]["shares_owned"], "Total_Price":total_price})
+                index_display.append({"Name": stock_stats["name"], "Symbol": stocks_owned[i]["symbol"], "Price_per_Share": stock_stats["price"],
+                                     "Number_of_Shares": stocks_owned[i]["shares_owned"], "Total_Price": total_price})
 
     # Collect Total Total Stock Price
     user_stock_cash = 0
@@ -128,7 +130,8 @@ def buy():
         stock_id = db.execute("SELECT id FROM stocks WHERE symbol = ?", symbol)
 
         # Check whether user has bought this stock before, and change amount of stocks owned accordingly
-        list_shares_owned = db.execute("SELECT shares_owned FROM shareholders WHERE user_id = ? AND stock_id = ?", session["user_id"], stock_id[0]["id"])
+        list_shares_owned = db.execute(
+            "SELECT shares_owned FROM shareholders WHERE user_id = ? AND stock_id = ?", session["user_id"], stock_id[0]["id"])
         shares_owned = 0
         if len(list_shares_owned) == 0:
             shares_owned = number_of_shares
@@ -136,7 +139,8 @@ def buy():
             shares_owned = list_shares_owned[-1]["shares_owned"] + number_of_shares
 
         # Insert into the shareholders table the relevant information for this transaction
-        db.execute("INSERT INTO shareholders (stock_id, user_id, shares, type, date, shares_owned, price_per_share) VALUES (?, ?, ?, ?, ?, ?, ?)", stock_id[0]["id"], session["user_id"], number_of_shares, "BUY", now, shares_owned, price_per_share)
+        db.execute(
+            "INSERT INTO shareholders (stock_id, user_id, shares, type, date, shares_owned, price_per_share) VALUES (?, ?, ?, ?, ?, ?, ?)", stock_id[0]["id"], session["user_id"], number_of_shares, "BUY", now, shares_owned, price_per_share)
 
         # Calculate and update cash balance
         cash = cash[0]["cash"] - total_price
@@ -146,6 +150,7 @@ def buy():
 
     else:
         return render_template("buy.html")
+
 
 @app.route("/change_password", methods=["GET", "POST"])
 @login_required
@@ -181,12 +186,12 @@ def change_password():
         return render_template("change_password.html")
 
 
-
 @app.route("/history")
 @login_required
 def history():
     """Show history of transactions"""
-    transactions = db.execute("SELECT shareholders.type, stocks.symbol, shareholders.shares, shareholders.price_per_share, shareholders.date FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id JOIN users ON users.id = shareholders.user_id WHERE users.id = ?", session["user_id"])
+    transactions = db.execute(
+        "SELECT shareholders.type, stocks.symbol, shareholders.shares, shareholders.price_per_share, shareholders.date FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id JOIN users ON users.id = shareholders.user_id WHERE users.id = ?", session["user_id"])
 
     print(transactions)
     """history_display = []
@@ -197,6 +202,7 @@ def history():
     user_info = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
 
     return render_template("history.html", username=user_info[0]["username"], transactions=transactions)
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -304,10 +310,11 @@ def register():
 
         session["user_id"] = rows[0]["id"]
 
-        return(redirect("/"))
+        return redirect("/")
 
     else:
         return render_template("register.html")
+
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
@@ -315,7 +322,8 @@ def sell():
     """Sell shares of stock"""
 
     # Create a list of unique stocks that the user owns so it can be in the select menu
-    stocks_owned = db.execute("SELECT stocks.symbol, shareholders.shares_owned FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id JOIN users ON users.id = shareholders.user_id WHERE users.id = ?", session["user_id"])
+    stocks_owned = db.execute(
+        "SELECT stocks.symbol, shareholders.shares_owned FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id JOIN users ON users.id = shareholders.user_id WHERE users.id = ?", session["user_id"])
     unique_stocks = []
     do_not_add = []
 
@@ -346,7 +354,8 @@ def sell():
             except ValueError:
                 return apology("must specify a positive integer of shares")
 
-        shares_owned = db.execute("SELECT shareholders.shares_owned FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id WHERE symbol = ?", request.form.get("symbol"))
+        shares_owned = db.execute(
+            "SELECT shareholders.shares_owned FROM shareholders JOIN stocks ON shareholders.stock_id = stocks.id WHERE symbol = ?", request.form.get("symbol"))
         if int(request.form.get("shares")) > shares_owned[-1]["shares_owned"]:
             return apology("you can't sell that many shares!")
 
@@ -357,18 +366,20 @@ def sell():
         total_price = price_per_share * number_of_shares
         now = datetime.now()
 
-        list_shares_owned = db.execute("SELECT shares_owned FROM shareholders WHERE user_id = ? AND stock_id = ?", session["user_id"], stock_id[0]["id"])
+        list_shares_owned = db.execute(
+            "SELECT shares_owned FROM shareholders WHERE user_id = ? AND stock_id = ?", session["user_id"], stock_id[0]["id"])
         shares_owned = list_shares_owned[-1]["shares_owned"] - number_of_shares
 
         # Sell the stock
-        db.execute("INSERT INTO shareholders (stock_id, user_id, shares, type, date, shares_owned, price_per_share) VALUES (?, ?, ?, ?, ?, ?, ?)", stock_id[0]["id"], session["user_id"], number_of_shares, "SELL", now, shares_owned, price_per_share)
+        db.execute(
+            "INSERT INTO shareholders (stock_id, user_id, shares, type, date, shares_owned, price_per_share) VALUES (?, ?, ?, ?, ?, ?, ?)", stock_id[0]["id"], session["user_id"], number_of_shares, "SELL", now, shares_owned, price_per_share)
 
         # Update the user's cash
         cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
         cash = cash[0]["cash"] + total_price
         db.execute("UPDATE users SET cash = ? WHERE id = ?", cash, session["user_id"])
 
-        return(redirect("/"))
+        return redirect("/")
 
     else:
         return render_template("sell.html", unique_stocks=unique_stocks)
