@@ -300,7 +300,9 @@ def register():
         # Register the user
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, password)
 
-        session["user_id"] = db.execute("SELECT id FROM users WHERE username = ?", username)
+        rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+
+        session["user_id"] = rows[0]["id"]
 
         return(redirect("/"))
 
