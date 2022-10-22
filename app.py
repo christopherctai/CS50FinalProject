@@ -83,16 +83,16 @@ def buy():
 
         # Ensure user specified a symbol
         if not request.form.get("symbol"):
-            return apology("must specify stock to buy", 403)
+            return apology("must specify stock to buy")
 
         # Ensure the symbol is legit
         stock_stats = lookup(request.form.get("symbol"))
         if stock_stats == None:
-            return apology("symbol does not exist", 403)
+            return apology("symbol does not exist")
 
         # Ensure user specified a number of shares
         elif not request.form.get("shares"):
-            return apology("must specify number of shares", 403)
+            return apology("must specify number of shares")
 
         # Ensure that the number of shares is a positive integer
         while True:
@@ -255,12 +255,12 @@ def quote():
         symbol = request.form.get("symbol")
 
         if not request.form.get("symbol"):
-            return apology("must provide symbol of stock", 403)
+            return apology("must provide symbol of stock")
 
         quote = lookup(symbol)
 
         if quote == None:
-            return apology("symbol does not exist", 403)
+            return apology("symbol does not exist")
 
         return render_template("quoted.html", quote=quote)
 
@@ -278,16 +278,16 @@ def register():
     if request.method == "POST":
 
         if not request.form.get("username"):
-            return apology("must choose a username", 403)
+            return apology("must choose a username")
 
         elif not request.form.get("password"):
-            return apology("must choose a password", 403)
+            return apology("must choose a password")
 
         elif not request.form.get("confirmation"):
-            return apology("must verify your password", 403)
+            return apology("must verify your password")
 
         elif request.form.get("password") != request.form.get("confirmation"):
-            return apology("passwords do not match", 403)
+            return apology("passwords do not match")
 
         usernames = db.execute("SELECT username FROM users")
 
@@ -332,10 +332,10 @@ def sell():
         number_of_shares = float(request.form.get("shares"))
         symbol = request.form.get("symbol")
         if not symbol:
-            return apology("must choose a symbol", 403)
+            return apology("must choose a symbol")
 
         elif not number_of_shares:
-            return apology("must specify number of shares", 403)
+            return apology("must specify number of shares")
 
         while True:
             try:
