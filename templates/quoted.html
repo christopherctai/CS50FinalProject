@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3">
+        <p>
+            Company Name: {{quote.name}}
+        </p>
+        <p>
+            Stock Price: {{quote.price | usd}}
+        </p>
+        <p>
+            Stock Symbol: {{quote.symbol}}
+        </p>
+    </div>
+{% endblock %}
