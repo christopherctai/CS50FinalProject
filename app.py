@@ -34,11 +34,8 @@ def after_request(response):
 
 
 @app.route("/")
-@login_required
 def index():
-    """Show user Login"""
-
-
+    """Show user homepage"""
     
     return render_template("index.html")
 
