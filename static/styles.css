@@ -22,8 +22,74 @@ nav .navbar-brand .green
     color: #2e944b;
 }
 
+.body
+{
+    margin:0;
+    padding:0;
+}
+
+section 
+{
+    height: 100vh;
+}
+
+.yellow 
+{
+    background-color: lightyellow;
+}
+
+.blue
+{
+    background-color: lightblue;
+}
+
+.tag 
+{
+    opacity:0;
+    transform:translate(0, 10vh);
+    transition: all 1s;
+}
+
+.tag.visible
+{
+    opacity:1;
+    transform:translate(0,0);
+}
+
 .text
 {
     color:white;
-    font-family: Courier;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.background
+{
+    background-color:black;
+}
+
+.fade-in-image
+{
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+}
+
+.fade-in-text
+{
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+}
+
+
+@keyframes fadeIn
+{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+.before-fade {background-color: black;}
