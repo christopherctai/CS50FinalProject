@@ -1,4 +1,146 @@
 /* Size for brand */
+
+* {
+    margin:0;
+    padding:0;
+}
+
+
+.text
+{
+    color:white;
+    font-family: Garamond;
+    text-align:justify;
+    justify-content:center;
+}
+
+.header {
+    text-align: center;
+    font-size: 500%;
+    padding: 50px;
+}
+
+.body
+{
+    background-color:black;
+    margin:0;
+    padding:0;
+}
+
+.carousel-image
+{
+    max-width: 100%;
+    height:550px;
+    object-fit: cover;
+
+}   
+
+.image-view
+{
+    padding:50px
+}
+
+.gray1
+{
+    background-color:#222222;
+}
+
+.gray2
+{
+    background-color:#333333;
+}
+
+.gray3
+{
+    background-color:#999999;
+}
+
+.wrapper{
+    margin: 0 auto;
+    width: 1000px;
+}
+
+p {
+    padding:20px;
+    font-size:large;    
+    justify-content: center;
+    text-align:justify;
+    margin:0;
+}
+
+
+.holder
+{
+    position:relative;
+    width:100%;
+}
+
+.holder .btn-image
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 200%);
+    -ms-transform: translate(-50%, 200%);
+}
+
+.fadeInBottom{
+    -webkit-animation: fadeInBottom 1.2s both;
+    -moz-animation: fadeInBottom 1.2s both;
+    -o-animation: fadeInBottom 1.2s both;
+    animation: fadeInBottom 1.2s both;
+}
+
+@-webkit-keyframes fadeInBottom {
+    0%{
+        opacity: 0;
+        -webkit-transform: translateY(50px);
+    }
+    100%{
+        opacity:1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+@-moz-keyframes fadeInBottom {
+    0%{
+        opacity: 0;
+        -moz-transform: translateY(50px);
+    }
+    100%{
+        opacity:1;
+        -moz-transform: translateY(0);
+    }
+}
+
+@-o-keyframes fadeInBottom {
+    0%{
+        opacity: 0;
+        -o-transform: translateY(50px);
+    }
+    100%{
+        opacity:1;
+        -o-transform: translateY(0);
+    }
+}
+@keyframes fadeInBottom {
+    0%{
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100%{
+        opacity:1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    font-size:small;
+    text-align:center;
+    background-color: black;
+    padding-top:20px;   
+}
+
 nav .navbar-brand
 {
     font-size: xx-large;
@@ -22,74 +164,233 @@ nav .navbar-brand .green
     color: #2e944b;
 }
 
-.body
+.background-image
 {
-    margin:0;
-    padding:0;
+    width:100%;
+    height:535px;
+    background-image: url(/static/images/icfretreattrees.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-blend-mode: multiply;
 }
 
-section 
+.background-image-2
 {
-    height: 100vh;
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;    
+    background-color: #777777;
+    padding-top:100px;
+    padding-bottom:200px;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfweeklyflock.png);
 }
 
-.yellow 
+.background-image-3
 {
-    background-color: lightyellow;
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 40%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#777777;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfbaptismprayer.jpg);
 }
 
-.blue
+.background-image-4
 {
-    background-color: lightblue;
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#555555;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfretreatsession.jpg);
 }
 
-.tag 
+.background-image-5
 {
-    opacity:0;
-    transform:translate(0, 10vh);
-    transition: all 1s;
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfgroupphoto4.jpg);
 }
 
-.tag.visible
+.background-image-6
 {
-    opacity:1;
-    transform:translate(0,0);
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfevtraining.png);
 }
 
-.text
+.background-image-7
 {
-    color:white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 35%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfbaptism.jpg);
 }
 
-.background
+.background-image-8
 {
-    background-color:black;
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfx317beachday.jpg);
 }
 
-.fade-in-image
+.background-image-9
 {
-    animation: fadeIn 1s;
-    -webkit-animation: fadeIn 1s;
-    -o-animation: fadeIn 1s;
-    -ms-animation: fadeIn 1s;
-    -moz-animation: fadeIn 1s;
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfbaptism2.jpg);
 }
 
-.fade-in-text
+.background-image-10
 {
-    animation: fadeIn 2s;
-    -webkit-animation: fadeIn 1s;
-    -o-animation: fadeIn 1s;
-    -ms-animation: fadeIn 1s;
-    -moz-animation: fadeIn 1s;
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfgradbrunchfood.jpg);
+}
+
+.background-image-11
+{
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfspecialevents.png);
+    transition:0.3s
+}
+
+.background-image-11:hover
+{
+    background-color:#d8d8d8;
+    background-blend-mode: multiply;
+}
+
+.background-image-12
+{
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfspecialevents.png);
+    transition:0.3s
+}
+
+.background-image-12:hover
+{
+    background-color:#d8d8d8;
+    background-blend-mode: multiply;
+}
+
+.background-image-13
+{
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfspecialevents.png);
+    transition:0.3s
+}
+
+.background-image-13:hover
+{
+    background-color:#d8d8d8;
+    background-blend-mode: multiply;
+}
+
+.background-image-14
+{
+    width:100%;
+    height:535px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;    
+    padding-top:100px;
+    padding-bottom:200px;
+    background-color:#888888;
+    background-blend-mode: multiply;
+    background-image: url(/static/images/icfspecialevents.png);
+    transition:0.3s
+}
+
+.background-image-14:hover
+{
+    background-color:#d8d8d8;
+    background-blend-mode: multiply;
+}
+
+.container
+{
+    padding-left:0px;
+    padding-right:0px;
 }
 
 
-@keyframes fadeIn
-{
-    0% {opacity:0;}
-    100% {opacity:1;}
-}
-
-.before-fade {background-color: black;}

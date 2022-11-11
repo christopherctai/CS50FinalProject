@@ -2,13 +2,15 @@ import os
 
 # Import all the SQL stuff from the cs50 library
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, json, url_for
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 
-from helpers import apology, login_required
+from helpers import apology, login_required, RegistrationForm, LoginForm
+from flask_sqlalchemy import SQLAlchemy 
+from models import User, Post 
 
 # Configure application
 app = Flask(__name__)
@@ -22,7 +24,25 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database, finance.db
-db = SQL("sqlite:///icf.db")
+# db = SQL("sqlite:///icf.db")
+
+# Set a secret key to prevent stuff from messing with session
+#imported secrets, then used secrets.token_hex(16)
+app.config['SECRET_KEY'] = '85ec7591f12e263a857c091565e5f4d4'
+# configure a SQL database. We can specify a sql path with /// in the URI. 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+# Configure the SQLAlchemy databse instead of using the CS50 one 
+db = SQLAlchemy(app) 
+
+app.app_context().push()
+
+# Create different classes. can represent the database structure using classes/models 
+# each class is a different table in the database 
+
+
+#Then we create the database with the command line
+
 
 @app.after_request
 def after_request(response):
@@ -39,10 +59,72 @@ def index():
     
     return render_template("index.html")
 
+@app.route("/wwb")
+def about_wwb():
+    return render_template("wwb.html")
+
+@app.route("/leadership")
+def leadership():
+    return render_template("leadership.html")
+
+@app.route("/student_leadership")
+def student_leadership():
+    return render_template("student_leadership.html")
+
+@app.route("/sundays")
+def sundays():
+    return render_template("sundays.html")
+
+@app.route("/general_events")
+def general_events():
+    return render_template("general_events.html")
+
+@app.route("/special_events")
+def special_events():
+    return render_template("special_events.html")
+
+@app.route("/church_events")
+def church_events():
+    return render_template("church_events.html")
+
+@app.route("/become_a_member")
+def become_a_member():
+    return render_template("become_a_member.html")
+
+@app.route("/serve_nomember")
+def serve_nomember():
+    return render_template("serve_nomember.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    form = RegistrationForm()
+
+    # If the form validates correctly
+    if form.validate_on_submit():
+        # Use a flash message - a one time alert. need to import flash from flask 
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect("/")
+
+    return render_template('register.html', form=form)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """Log user in"""
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid Login', 'danger')
+    return render_template('login.html', form=form)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+"""
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    # Log User In
 
     # Forget any user_id
     session.clear()
@@ -78,7 +160,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    """Log user out"""
+    # Log User Out
 
     # Forget any user_id
     session.clear()
@@ -86,10 +168,9 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
+    # Register User
 
     session.clear()
 
@@ -127,3 +208,4 @@ def register():
 
     else:
         return render_template("register.html")
+"""
