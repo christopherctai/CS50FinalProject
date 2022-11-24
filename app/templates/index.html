@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    
+<div class="holder">
+    <div class="fadeInBottom background-image">
+        <div class="header">WELCOME</div>
+        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="{{ url_for('main.sundays') }}" style="transform:translate(-150%, 200%)">Sunday Service</a>
+        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="{{ url_for('main.wwb') }}">About Us</a>
+        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="{{ url_for('main.become_a_member') }}" style="transform:translate(55%, 200%)">Get Involved</a>
+    </div>
+</div>
+
+<div class="header gray2">OUR MINISTRY</div>
+
+<section class="image-view gray1">
+<div id="carouselExampleIndicators" class="tag carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+        <img src="/static/images/icfgroupphoto.jpg" class="d-block w-100 carousel-image" alt="ICF 2022 Retreat">
+        </div>
+        <div class="carousel-item">
+        <img src="/static/images/icfgroupphoto2.jpg" class="d-block w-100 carousel-image" alt="ICF Family Camp">
+        </div>
+        <div class="carousel-item">
+        <img src="/static/images/icfgroupphoto3.jpg" class="d-block w-100 carousel-image" alt="ICF Baptisms">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+</section>
+
+<div class="header gray2">OUR MISSION</div>
+
+<div class="gray1">
+    <p style="text-align: center; font-size:250%; padding-top:80px; padding-bottom:0px">"Him we proclaim, warning everyone and teaching everyone</p>
+    <p style="text-align: center; font-size:250%; padding:0px">with all wisdom, that we may present everyone mature in Christ."</p>
+    <p style="text-align: center; font-size:250%; padding:20px">Colossians 1:28</p>
+    <p style="padding:50px; padding-left:150px; padding-right:150px">Immanuel Christian Fellowship (ICF) is the college ministry of Immanuel Bible Church. Our desire is to connect college students to the local church, proclaiming Christ to them with a high view of God and of Scripture, so that each one would be mature in Christ. Our aim is to equip these students to serve Christ and His church, and to evangelize students who are lost without Christ.</p>
+</div>
+
+<div class="header gray2">OUR MEANS</div>
+
+<div class="image-view gray1">
+    <div class="row justify-content-center text-center">
+        <div class="col">
+            <div class="card text-white gray2 mb-3">
+                <img src="/static/images/icfgradbrunch.jpg" class="card-img-top img-fluid" alt="ICF Grad Brunch">
+                <div class="card-body basic-text">
+                    <h5 class="card-title" style="font-size:250%">Join Us On Sunday!</h5>
+                    <p class="card-text" style="padding-top:10px; padding-bottom:20px">
+                    We provide rides to Immanuel Bible Church every Sunday. You can sign up for a ride here if you want to come to church (sign up by Friday night)! A typical Sunday service is from 9am to 10:30am, with an Equip Hour (more teaching) from 11am to 12pm.
+                    </p>
+                    <a href="/sundays" target="_blank" class="btn btn-outline-light">Sunday Service</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjOKT6_yMXv6Zd47cGVgrPWIPf43g_UqdCQ8GOibKgSQNRDw/viewform" target="_blank" class="btn btn-outline-info">Rides From UCLA</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScRpomXatgwd5_VPTa6Ieq4CUfYswsc6w2c-1ktV6oMkFlXjw/viewform" target="_blank" class="btn btn-outline-danger">Rides From USC</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+{% endblock %}

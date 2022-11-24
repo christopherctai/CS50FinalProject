@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Announcements
+{% endblock %}
+
+{% block main %}
+
+{% for post in posts.items %}
+<div class="row gray2" style="margin-top:20px; margin-left:60px; margin-right:60px; padding:20px">
+    <div class="col-6">
+        <img src="{{ url_for('static', filename='images/profile_pics/' + post.author.image_file) }}"
+            class="rounded-circle article-img" style="width:50px; margin:5px">
+        <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}" style="">{{
+            post.author.username }}</a>
+        <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+    </div>
+    <hr style="margin:3px">
+</div>
+<div class="row gray2" style="margin-left:60px; margin-right:60px;">
+    <div class="col">
+        <h2 style="padding-left:20px; padding-top:0px; margin-top:0px"><a class=""
+                href="{{ url_for('posts.announcement_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+        <p class="article-content">{{ post.content }}</p>
+    </div>
+</div>
+</div>
+{% endfor %}
+<div class="text-center" style="padding:20px">
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+    {% if page_num %}
+    {% if posts.page == page_num %}
+    <a class="text-center btn btn-light mb-4" href="{{ url_for('posts.announcements', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="text-center btn btn-outline-light mb-4" href="{{ url_for('posts.announcements', page=page_num) }}">{{ page_num
+        }}</a>
+    {% endif %}
+    {% else %}
+    ...
+    {% endif %}
+    {% endfor %}
+</div>
+
+<!--
+{% for post in posts %}
+<h1> {{ post.title }} </h1>
+<p>By {{ post.author }} on {{ post.date_posted }}</p>
+<p> {{ post.content }} </p>
+{% endfor %}
+-->
+
+{% endblock %}
