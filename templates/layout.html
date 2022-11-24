@@ -20,7 +20,9 @@
     <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
 
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
     <!-- get CSS stylesheets -->
     <link href="/static/styles.css" rel="stylesheet">
 
@@ -38,52 +40,31 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark gray1">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><span class="small me-auto mb-2 mb-lg-0">Immanuel Christian
+            <a class="navbar-brand" href="{{ url_for('main.index') }}""><span class="small me-auto mb-2 mb-lg-0">Immanuel Christian
                     Fellowship</span></a>
             <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
                 data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar">
-                {% if session["user_id"] %}
+                {% if current_user.is_authenticated %} 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="aboutDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" href="#">Announcements</a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('posts.announcements') }}">All Announcements</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('posts.new_post') }}">Create Announcement Post</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="aboutDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false" href="#">About</a>
                         <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="page1.html">What We Believe</a></li>
-                            <li><a class="dropdown-item" href="page2.html">Leadership</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="announcementsDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Announcements
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="announcementsDropdown">
-                            <li><a class="dropdown-item" href="page5.html">Discipleship and Small Groups</a></li>
-                            <li><a class="dropdown-item" href="page3.html">General Events</a></li>
-                            <li><a class="dropdown-item" href="page4.html">Special Upcoming Events</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-
-                <ul class="navbar-nav ms-auto mt-2">
-                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                </ul>
-                {% else %}
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="aboutDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="#">About</a>
-                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="/wwb">What We Believe</a></li>
-                            <li><a class="dropdown-item" href="/sundays">Sunday Service</a></li>
-                            <li><a class="dropdown-item" href="/leadership">Staff Leadership</a></li>
-                            <li><a class="dropdown-item" href="/student_leadership">Student Leadership</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.wwb') }}">What We Believe</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.sundays') }}">Sunday Service</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.leadership') }}">Staff Leadership</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.student_leadership') }}">Student Leadership</a></li>
                         </ul>
                     </li>
 
@@ -94,9 +75,9 @@
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="announcementsDropdown">
-                            <li><a class="dropdown-item" href="/general_events">General Events</a></li>
-                            <li><a class="dropdown-item" href="/special_events">Special Events</a></li>
-                            <li><a class="dropdown-item" href="/church_events">Church-Wide Events</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.general_events') }}">General Events</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.special_events') }}">Special Events</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.church_events') }}">Church-Wide Events</a></li>
                         </ul>
                     </li>
 
@@ -107,18 +88,63 @@
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="announcementsDropdown">
-                            <li><a class="dropdown-item" href="/become_a_member">Become a Member</a></li>
-                            <li><a class="dropdown-item" href="/serve_nomember">Serve</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.become_a_member') }}">Become a Member</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.serve_nomember') }}">Serve</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+                <ul class="navbar-nav ms-auto mt-2">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('users.account') }}">Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('users.logout') }}">Log Out</a></li>
+                </ul>
+
+                {% else %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="aboutDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" href="#">About</a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('main.wwb') }}">What We Believe</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.sundays') }}">Sunday Service</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.leadership') }}">Staff Leadership</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.student_leadership') }}">Student Leadership</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="announcementsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Events
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="announcementsDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('main.general_events') }}">General Events</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.special_events') }}">Special Events</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.church_events') }}">Church-Wide Events</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="announcementsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Get Involved
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="announcementsDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('main.become_a_member') }}">Become a Member</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.serve_nomember') }}">Serve</a></li>
                         </ul>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-expanded="false" href="/register">Register</a>
+                        <a class="nav-link" aria-expanded="false" href="{{ url_for('users.register') }}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Log In</a>
+                        <a class="nav-link" href="{{ url_for('users.login') }}">Log In</a>
                     </li>
                 </ul>
 
@@ -127,7 +153,7 @@
         </div>
     </nav>
 
-    <main class="text-center">
+    <main>
         <div class="row">
             <div class="col-md">
                 {% with messages = get_flashed_messages(with_categories=true) %} 

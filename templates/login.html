@@ -44,14 +44,14 @@
     </fieldset>
     <div class="form-group">
         {{ form.submit(class="btn btn-outline-light") }}
+        <small class="text-muted ml-2 text-center">
+            <a href="{{ url_for('users.reset_request') }}">Forgot Password?</a>
+        </small>
     </div>
-    <small class="text-muted ml-2">
-        <a href="#">Forgot Password?</a>
-    </small>
 </form>
 <div class="border-top pt-3">
-    <small class="text-muted">
-        Need to Register as a Member? <a class="ml-2" href="{{ url_for('register') }}">Register Here</a>
+    <small class="text-muted text-center">
+        Need to Register as a Member? <a class="ml-2" href="{{ url_for('users.register') }}">Register Here</a>
     </small>
 </div>
 {% endblock %}

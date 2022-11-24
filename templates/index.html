@@ -9,9 +9,9 @@
 <div class="holder">
     <div class="fadeInBottom background-image">
         <div class="header">WELCOME</div>
-        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="/sundays" style="transform:translate(-150%, 200%)">Sunday Service</a>
-        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="/wwb">About Us</a>
-        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="/become_a_member" style="transform:translate(55%, 200%)">Get Involved</a>
+        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="{{ url_for('main.sundays') }}" style="transform:translate(-150%, 200%)">Sunday Service</a>
+        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="{{ url_for('main.wwb') }}">About Us</a>
+        <a type="button" class="btn-image btn-lg btn btn-outline-light" href="{{ url_for('main.become_a_member') }}" style="transform:translate(55%, 200%)">Get Involved</a>
     </div>
 </div>
 
@@ -58,7 +58,7 @@
 <div class="header gray2">OUR MEANS</div>
 
 <div class="image-view gray1">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center text-center">
         <div class="col">
             <div class="card text-white gray2 mb-3">
                 <img src="/static/images/icfgradbrunch.jpg" class="card-img-top img-fluid" alt="ICF Grad Brunch">
